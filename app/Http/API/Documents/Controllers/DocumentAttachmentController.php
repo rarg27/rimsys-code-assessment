@@ -7,6 +7,7 @@ use App\Domain\Documents\Actions\UpsertDocumentAttachment;
 use App\Domain\Documents\Models\Document;
 use App\Http\API\BaseController;
 use App\Http\API\Documents\Queries\DocumentAttachmentQuery;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class DocumentAttachmentController extends BaseController
@@ -31,5 +32,12 @@ class DocumentAttachmentController extends BaseController
         $deleteDocumentAttachment->do($document, $id);
 
         return responder()->success()->respond(Response::HTTP_NO_CONTENT);
+    }
+
+    public function download(Document $document, $id)
+    {
+        $media = $document->attachments()->wherePivot('media_id', $id)->firstOrFail();
+
+        return Storage::disk($media->disk)->download($media->getDiskPath(), $document->name);
     }
 }

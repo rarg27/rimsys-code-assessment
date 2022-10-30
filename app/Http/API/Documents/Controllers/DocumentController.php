@@ -7,6 +7,7 @@ use App\Domain\Documents\Actions\UpsertDocument;
 use App\Domain\Documents\Models\Document;
 use App\Http\API\BaseController;
 use App\Http\API\Documents\Queries\DocumentQuery;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class DocumentController extends BaseController
@@ -36,5 +37,12 @@ class DocumentController extends BaseController
         $deleteDocument->do($document);
 
         return responder()->success()->respond(Response::HTTP_NO_CONTENT);
+    }
+
+    public function download(Document $document)
+    {
+        $media = $document->lastMedia('attachments');
+
+        return Storage::disk($media->disk)->download($media->getDiskPath(), $document->name);
     }
 }
