@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Spatie\QueryBuilder\Exceptions\InvalidFilterQuery;
+use Spatie\QueryBuilder\Exceptions\InvalidIncludeQuery;
+use Spatie\QueryBuilder\Exceptions\InvalidQuery;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -66,6 +69,10 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof ValidationException) {
             return parent::render($request, $exception);
+        }
+
+        if ($exception instanceof InvalidQuery) {
+            return responder()->error(400, 'Bad request.')->respond(400);
         }
 
         if ($exception instanceof MethodNotAllowedHttpException) {
