@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -60,6 +62,14 @@ class Handler extends ExceptionHandler
     {
         if (config('app.debug')) {
             return parent::render($request, $exception);
+        }
+
+        if ($exception instanceof ValidationException) {
+            return parent::render($request, $exception);
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return responder()->error(405, 'Method not allowed.')->respond(405);
         }
 
         if ($exception instanceof ModelNotFoundException || $exception instanceof NotFoundHttpException) {
