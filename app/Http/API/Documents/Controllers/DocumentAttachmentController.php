@@ -22,6 +22,8 @@ class DocumentAttachmentController extends BaseController
      *
      * @urlParam document int required Document ID. Example: 1
      *
+     * @queryParam filter[search] string Filter by Document name. No-example
+     * @queryParam sort string Sort by field. Example: filename
      * @queryParam cursor string Page cursor. No-example
      * @queryParam page int Page number. Example: 1
      * @queryParam limit int Page size. Example: 5

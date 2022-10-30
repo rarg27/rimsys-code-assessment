@@ -1,0 +1,2804 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>rimsys-assessment Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://localhost:8000";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.33.0.js"></script>
+
+    <script src="../docs/js/theme-default-3.33.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="document-attachments">
+                    <a href="#document-attachments">Document Attachments</a>
+                </li>
+                                    <ul id="tocify-subheader-document-attachments" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="document-attachments-GETapi-documents--document--attachments">
+                        <a href="#document-attachments-GETapi-documents--document--attachments">List document&#039;s attachments</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="document-attachments-POSTapi-documents--document--attachments">
+                        <a href="#document-attachments-POSTapi-documents--document--attachments">Create an attachment for document</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="document-attachments-PUTapi-documents--document--attachments--id-">
+                        <a href="#document-attachments-PUTapi-documents--document--attachments--id-">Update attachment of a document</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="document-attachments-DELETEapi-documents--document--attachments--id-">
+                        <a href="#document-attachments-DELETEapi-documents--document--attachments--id-">Delete attachment of a document</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="document-attachments-GETapi-documents--document--attachments--id--download">
+                        <a href="#document-attachments-GETapi-documents--document--attachments--id--download">Download attachment of a document</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="documents">
+                    <a href="#documents">Documents</a>
+                </li>
+                                    <ul id="tocify-subheader-documents" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="documents-GETapi-documents">
+                        <a href="#documents-GETapi-documents">List documents</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="documents-GETapi-documents--id-">
+                        <a href="#documents-GETapi-documents--id-">Fetch a document</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="documents-POSTapi-documents">
+                        <a href="#documents-POSTapi-documents">Create document</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="documents-PUTapi-documents--document-">
+                        <a href="#documents-PUTapi-documents--document-">Update document</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="documents-DELETEapi-documents--document-">
+                        <a href="#documents-DELETEapi-documents--document-">Delete document</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="documents-GETapi-documents--document--download">
+                        <a href="#documents-GETapi-documents--document--download">Download a document</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="users">
+                    <a href="#users">Users</a>
+                </li>
+                                    <ul id="tocify-subheader-users" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="users-GETapi-users">
+                        <a href="#users-GETapi-users">List users</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-GETapi-users--id-">
+                        <a href="#users-GETapi-users--id-">Fetch a user</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-POSTapi-users">
+                        <a href="#users-POSTapi-users">Create a user</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-PUTapi-users--user-">
+                        <a href="#users-PUTapi-users--user-">Update a user</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-DELETEapi-users--user-">
+                        <a href="#users-DELETEapi-users--user-">Delete a user</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: October 30 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost:8000</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="document-attachments">Document Attachments</h1>
+
+    <p>APIs for managing Document Attachments</p>
+
+            <h2 id="document-attachments-GETapi-documents--document--attachments">List document&#039;s attachments</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-documents--document--attachments">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/documents/1/attachments?sort=filename&amp;page=1&amp;limit=5" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/1/attachments"
+);
+
+const params = {
+    "sort": "filename",
+    "page": "1",
+    "limit": "5",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-documents--document--attachments">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 48
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;disk&quot;: &quot;public&quot;,
+            &quot;directory&quot;: &quot;media/documents/1&quot;,
+            &quot;filename&quot;: &quot;sample&quot;,
+            &quot;extension&quot;: &quot;pdf&quot;,
+            &quot;mime_type&quot;: &quot;application/pdf&quot;,
+            &quot;aggregate_type&quot;: &quot;pdf&quot;,
+            &quot;size&quot;: 3028,
+            &quot;variant_name&quot;: null,
+            &quot;original_media_id&quot;: null,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;media_id&quot;: 1,
+            &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+            &quot;mediable_id&quot;: 1,
+            &quot;tag&quot;: &quot;attachments&quot;,
+            &quot;order&quot;: 1,
+            &quot;version&quot;: 1
+        }
+    ],
+    &quot;pagination&quot;: {
+        &quot;count&quot;: 1,
+        &quot;total&quot;: 1,
+        &quot;perPage&quot;: 5,
+        &quot;currentPage&quot;: 1,
+        &quot;totalPages&quot;: 1,
+        &quot;links&quot;: {}
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-documents--document--attachments" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-documents--document--attachments"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-documents--document--attachments"></code></pre>
+</span>
+<span id="execution-error-GETapi-documents--document--attachments" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-documents--document--attachments"></code></pre>
+</span>
+<form id="form-GETapi-documents--document--attachments" data-method="GET"
+      data-path="api/documents/{document}/attachments"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-documents--document--attachments', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-documents--document--attachments"
+                    onclick="tryItOut('GETapi-documents--document--attachments');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-documents--document--attachments"
+                    onclick="cancelTryOut('GETapi-documents--document--attachments');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-documents--document--attachments" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/documents/{document}/attachments</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>document</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="document"
+               data-endpoint="GETapi-documents--document--attachments"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>filter[search]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[search]"
+               data-endpoint="GETapi-documents--document--attachments"
+               value=""
+               data-component="query" hidden>
+    <br>
+<p>Filter by Document name.</p>
+            </p>
+                    <p>
+                <b><code>sort</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="sort"
+               data-endpoint="GETapi-documents--document--attachments"
+               value="filename"
+               data-component="query" hidden>
+    <br>
+<p>Sort by field.</p>
+            </p>
+                    <p>
+                <b><code>cursor</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="cursor"
+               data-endpoint="GETapi-documents--document--attachments"
+               value=""
+               data-component="query" hidden>
+    <br>
+<p>Page cursor.</p>
+            </p>
+                    <p>
+                <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETapi-documents--document--attachments"
+               value="1"
+               data-component="query" hidden>
+    <br>
+<p>Page number.</p>
+            </p>
+                    <p>
+                <b><code>limit</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="limit"
+               data-endpoint="GETapi-documents--document--attachments"
+               value="5"
+               data-component="query" hidden>
+    <br>
+<p>Page size.</p>
+            </p>
+                </form>
+
+            <h2 id="document-attachments-POSTapi-documents--document--attachments">Create an attachment for document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-documents--document--attachments">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/documents/1/attachments" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "file=@C:\msys64\tmp\php287E.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/1/attachments"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('file', document.querySelector('input[name="file"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-documents--document--attachments">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 47
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;id&quot;: 9,
+        &quot;disk&quot;: &quot;public&quot;,
+        &quot;directory&quot;: &quot;media/documents/1&quot;,
+        &quot;filename&quot;: &quot;test-1&quot;,
+        &quot;extension&quot;: &quot;jpg&quot;,
+        &quot;mime_type&quot;: &quot;image/jpeg&quot;,
+        &quot;aggregate_type&quot;: &quot;image&quot;,
+        &quot;size&quot;: 10240,
+        &quot;variant_name&quot;: null,
+        &quot;original_media_id&quot;: null,
+        &quot;created_at&quot;: &quot;2022-10-30T13:22:19.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-10-30T13:22:19.000000Z&quot;,
+        &quot;version&quot;: 2,
+        &quot;pivot&quot;: {
+            &quot;mediable_id&quot;: 1,
+            &quot;media_id&quot;: 9,
+            &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+            &quot;tag&quot;: &quot;attachments&quot;,
+            &quot;order&quot;: 2
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-documents--document--attachments" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-documents--document--attachments"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-documents--document--attachments"></code></pre>
+</span>
+<span id="execution-error-POSTapi-documents--document--attachments" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-documents--document--attachments"></code></pre>
+</span>
+<form id="form-POSTapi-documents--document--attachments" data-method="POST"
+      data-path="api/documents/{document}/attachments"
+      data-authed="0"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-documents--document--attachments', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-documents--document--attachments"
+                    onclick="tryItOut('POSTapi-documents--document--attachments');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-documents--document--attachments"
+                    onclick="cancelTryOut('POSTapi-documents--document--attachments');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-documents--document--attachments" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/documents/{document}/attachments</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>document</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="document"
+               data-endpoint="POSTapi-documents--document--attachments"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>file</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="file"
+               data-endpoint="POSTapi-documents--document--attachments"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Attachment for document.</p>
+        </p>
+        </form>
+
+            <h2 id="document-attachments-PUTapi-documents--document--attachments--id-">Update attachment of a document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-documents--document--attachments--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/documents/1/attachments/1" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "file=@C:\msys64\tmp\php28BE.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/1/attachments/1"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('file', document.querySelector('input[name="file"]').files[0]);
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-documents--document--attachments--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 46
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;disk&quot;: &quot;public&quot;,
+        &quot;directory&quot;: &quot;media/documents/1&quot;,
+        &quot;filename&quot;: &quot;test.jpg-1&quot;,
+        &quot;extension&quot;: &quot;jpg&quot;,
+        &quot;mime_type&quot;: &quot;image/jpeg&quot;,
+        &quot;aggregate_type&quot;: &quot;image&quot;,
+        &quot;size&quot;: 10240,
+        &quot;variant_name&quot;: null,
+        &quot;original_media_id&quot;: null,
+        &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-10-30T13:22:19.000000Z&quot;,
+        &quot;version&quot;: 1,
+        &quot;pivot&quot;: {
+            &quot;mediable_id&quot;: 1,
+            &quot;media_id&quot;: 1,
+            &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+            &quot;tag&quot;: &quot;attachments&quot;,
+            &quot;order&quot;: 1
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-documents--document--attachments--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-documents--document--attachments--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-documents--document--attachments--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-documents--document--attachments--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-documents--document--attachments--id-"></code></pre>
+</span>
+<form id="form-PUTapi-documents--document--attachments--id-" data-method="PUT"
+      data-path="api/documents/{document}/attachments/{id}"
+      data-authed="0"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-documents--document--attachments--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-documents--document--attachments--id-"
+                    onclick="tryItOut('PUTapi-documents--document--attachments--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-documents--document--attachments--id-"
+                    onclick="cancelTryOut('PUTapi-documents--document--attachments--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-documents--document--attachments--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/documents/{document}/attachments/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>document</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="document"
+               data-endpoint="PUTapi-documents--document--attachments--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PUTapi-documents--document--attachments--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Attachment ID.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>file</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="file"
+               data-endpoint="PUTapi-documents--document--attachments--id-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Attachment for document.</p>
+        </p>
+        </form>
+
+            <h2 id="document-attachments-DELETEapi-documents--document--attachments--id-">Delete attachment of a document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-documents--document--attachments--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/documents/1/attachments/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/1/attachments/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-documents--document--attachments--id-">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 45
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+<code>[Empty response]</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-documents--document--attachments--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-documents--document--attachments--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-documents--document--attachments--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-documents--document--attachments--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-documents--document--attachments--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-documents--document--attachments--id-" data-method="DELETE"
+      data-path="api/documents/{document}/attachments/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-documents--document--attachments--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-documents--document--attachments--id-"
+                    onclick="tryItOut('DELETEapi-documents--document--attachments--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-documents--document--attachments--id-"
+                    onclick="cancelTryOut('DELETEapi-documents--document--attachments--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-documents--document--attachments--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/documents/{document}/attachments/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>document</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="document"
+               data-endpoint="DELETEapi-documents--document--attachments--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="DELETEapi-documents--document--attachments--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Attachment ID.</p>
+            </p>
+                    </form>
+
+            <h2 id="document-attachments-GETapi-documents--document--attachments--id--download">Download attachment of a document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-documents--document--attachments--id--download">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/documents/2/attachments/2/download" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/2/attachments/2/download"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-documents--document--attachments--id--download">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">content-type: application/pdf
+content-disposition: attachment; filename=quam.pdf
+cache-control: no-cache, private
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 44
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json"></code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-documents--document--attachments--id--download" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-documents--document--attachments--id--download"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-documents--document--attachments--id--download"></code></pre>
+</span>
+<span id="execution-error-GETapi-documents--document--attachments--id--download" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-documents--document--attachments--id--download"></code></pre>
+</span>
+<form id="form-GETapi-documents--document--attachments--id--download" data-method="GET"
+      data-path="api/documents/{document}/attachments/{id}/download"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-documents--document--attachments--id--download', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-documents--document--attachments--id--download"
+                    onclick="tryItOut('GETapi-documents--document--attachments--id--download');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-documents--document--attachments--id--download"
+                    onclick="cancelTryOut('GETapi-documents--document--attachments--id--download');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-documents--document--attachments--id--download" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/documents/{document}/attachments/{id}/download</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>document</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="document"
+               data-endpoint="GETapi-documents--document--attachments--id--download"
+               value="2"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-documents--document--attachments--id--download"
+               value="2"
+               data-component="url" hidden>
+    <br>
+<p>Attachment ID.</p>
+            </p>
+                    </form>
+
+        <h1 id="documents">Documents</h1>
+
+    <p>APIs for managing Documents</p>
+
+            <h2 id="documents-GETapi-documents">List documents</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-documents">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/documents?filter[id]=1&amp;filter[user_id]=1&amp;sort=-created_at&amp;include=attachments&amp;page=1&amp;limit=5" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents"
+);
+
+const params = {
+    "filter[id]": "1",
+    "filter[user_id]": "1",
+    "sort": "-created_at",
+    "include": "attachments",
+    "page": "1",
+    "limit": "5",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-documents">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 54
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;user_id&quot;: 1,
+            &quot;name&quot;: &quot;explicabo.pdf&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;attachments&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;disk&quot;: &quot;public&quot;,
+                    &quot;directory&quot;: &quot;media/documents/1&quot;,
+                    &quot;filename&quot;: &quot;sample&quot;,
+                    &quot;extension&quot;: &quot;pdf&quot;,
+                    &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                    &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                    &quot;size&quot;: 3028,
+                    &quot;variant_name&quot;: null,
+                    &quot;original_media_id&quot;: null,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;version&quot;: 1,
+                    &quot;pivot&quot;: {
+                        &quot;mediable_id&quot;: 1,
+                        &quot;media_id&quot;: 1,
+                        &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                        &quot;tag&quot;: &quot;attachments&quot;,
+                        &quot;order&quot;: 1
+                    }
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;user_id&quot;: 2,
+            &quot;name&quot;: &quot;quam.pdf&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;attachments&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;disk&quot;: &quot;public&quot;,
+                    &quot;directory&quot;: &quot;media/documents/2&quot;,
+                    &quot;filename&quot;: &quot;sample&quot;,
+                    &quot;extension&quot;: &quot;pdf&quot;,
+                    &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                    &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                    &quot;size&quot;: 3028,
+                    &quot;variant_name&quot;: null,
+                    &quot;original_media_id&quot;: null,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;version&quot;: 1,
+                    &quot;pivot&quot;: {
+                        &quot;mediable_id&quot;: 2,
+                        &quot;media_id&quot;: 2,
+                        &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                        &quot;tag&quot;: &quot;attachments&quot;,
+                        &quot;order&quot;: 1
+                    }
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;user_id&quot;: 3,
+            &quot;name&quot;: &quot;autem.pdf&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;attachments&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;disk&quot;: &quot;public&quot;,
+                    &quot;directory&quot;: &quot;media/documents/3&quot;,
+                    &quot;filename&quot;: &quot;sample&quot;,
+                    &quot;extension&quot;: &quot;pdf&quot;,
+                    &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                    &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                    &quot;size&quot;: 3028,
+                    &quot;variant_name&quot;: null,
+                    &quot;original_media_id&quot;: null,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;version&quot;: 1,
+                    &quot;pivot&quot;: {
+                        &quot;mediable_id&quot;: 3,
+                        &quot;media_id&quot;: 3,
+                        &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                        &quot;tag&quot;: &quot;attachments&quot;,
+                        &quot;order&quot;: 1
+                    }
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;user_id&quot;: 4,
+            &quot;name&quot;: &quot;maiores.pdf&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;attachments&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;disk&quot;: &quot;public&quot;,
+                    &quot;directory&quot;: &quot;media/documents/4&quot;,
+                    &quot;filename&quot;: &quot;sample&quot;,
+                    &quot;extension&quot;: &quot;pdf&quot;,
+                    &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                    &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                    &quot;size&quot;: 3028,
+                    &quot;variant_name&quot;: null,
+                    &quot;original_media_id&quot;: null,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;version&quot;: 1,
+                    &quot;pivot&quot;: {
+                        &quot;mediable_id&quot;: 4,
+                        &quot;media_id&quot;: 4,
+                        &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                        &quot;tag&quot;: &quot;attachments&quot;,
+                        &quot;order&quot;: 1
+                    }
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;user_id&quot;: 5,
+            &quot;name&quot;: &quot;voluptatem.pdf&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;attachments&quot;: [
+                {
+                    &quot;id&quot;: 5,
+                    &quot;disk&quot;: &quot;public&quot;,
+                    &quot;directory&quot;: &quot;media/documents/5&quot;,
+                    &quot;filename&quot;: &quot;sample&quot;,
+                    &quot;extension&quot;: &quot;pdf&quot;,
+                    &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                    &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                    &quot;size&quot;: 3028,
+                    &quot;variant_name&quot;: null,
+                    &quot;original_media_id&quot;: null,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;version&quot;: 1,
+                    &quot;pivot&quot;: {
+                        &quot;mediable_id&quot;: 5,
+                        &quot;media_id&quot;: 5,
+                        &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                        &quot;tag&quot;: &quot;attachments&quot;,
+                        &quot;order&quot;: 1
+                    }
+                }
+            ]
+        }
+    ],
+    &quot;pagination&quot;: {
+        &quot;count&quot;: 5,
+        &quot;total&quot;: 5,
+        &quot;perPage&quot;: 5,
+        &quot;currentPage&quot;: 1,
+        &quot;totalPages&quot;: 1,
+        &quot;links&quot;: {}
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-documents" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-documents"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-documents"></code></pre>
+</span>
+<span id="execution-error-GETapi-documents" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-documents"></code></pre>
+</span>
+<form id="form-GETapi-documents" data-method="GET"
+      data-path="api/documents"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-documents', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-documents"
+                    onclick="tryItOut('GETapi-documents');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-documents"
+                    onclick="cancelTryOut('GETapi-documents');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-documents" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/documents</code></b>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>filter[id]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[id]"
+               data-endpoint="GETapi-documents"
+               value="1"
+               data-component="query" hidden>
+    <br>
+<p>Filter by comma-separated ID.</p>
+            </p>
+                    <p>
+                <b><code>filter[user_id]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[user_id]"
+               data-endpoint="GETapi-documents"
+               value="1"
+               data-component="query" hidden>
+    <br>
+<p>Filter by comma-separated User ID.</p>
+            </p>
+                    <p>
+                <b><code>filter[search]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[search]"
+               data-endpoint="GETapi-documents"
+               value=""
+               data-component="query" hidden>
+    <br>
+<p>Search by document's name.</p>
+            </p>
+                    <p>
+                <b><code>sort</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="sort"
+               data-endpoint="GETapi-documents"
+               value="-created_at"
+               data-component="query" hidden>
+    <br>
+<p>Sort by field.</p>
+            </p>
+                    <p>
+                <b><code>include</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="include"
+               data-endpoint="GETapi-documents"
+               value="attachments"
+               data-component="query" hidden>
+    <br>
+<p>Include comma-separated related resource.</p>
+            </p>
+                    <p>
+                <b><code>cursor</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="cursor"
+               data-endpoint="GETapi-documents"
+               value=""
+               data-component="query" hidden>
+    <br>
+<p>Page cursor.</p>
+            </p>
+                    <p>
+                <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETapi-documents"
+               value="1"
+               data-component="query" hidden>
+    <br>
+<p>Page number.</p>
+            </p>
+                    <p>
+                <b><code>limit</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="limit"
+               data-endpoint="GETapi-documents"
+               value="5"
+               data-component="query" hidden>
+    <br>
+<p>Page size.</p>
+            </p>
+                </form>
+
+            <h2 id="documents-GETapi-documents--id-">Fetch a document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-documents--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/documents/1?include=attachments" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/1"
+);
+
+const params = {
+    "include": "attachments",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-documents--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 53
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;user_id&quot;: 1,
+        &quot;name&quot;: &quot;explicabo.pdf&quot;,
+        &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+        &quot;attachments&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;disk&quot;: &quot;public&quot;,
+                &quot;directory&quot;: &quot;media/documents/1&quot;,
+                &quot;filename&quot;: &quot;sample&quot;,
+                &quot;extension&quot;: &quot;pdf&quot;,
+                &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                &quot;size&quot;: 3028,
+                &quot;variant_name&quot;: null,
+                &quot;original_media_id&quot;: null,
+                &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                &quot;version&quot;: 1,
+                &quot;pivot&quot;: {
+                    &quot;mediable_id&quot;: 1,
+                    &quot;media_id&quot;: 1,
+                    &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                    &quot;tag&quot;: &quot;attachments&quot;,
+                    &quot;order&quot;: 1
+                }
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-documents--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-documents--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-documents--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-documents--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-documents--id-"></code></pre>
+</span>
+<form id="form-GETapi-documents--id-" data-method="GET"
+      data-path="api/documents/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-documents--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-documents--id-"
+                    onclick="tryItOut('GETapi-documents--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-documents--id-"
+                    onclick="cancelTryOut('GETapi-documents--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-documents--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/documents/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-documents--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>include</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="include"
+               data-endpoint="GETapi-documents--id-"
+               value="attachments"
+               data-component="query" hidden>
+    <br>
+<p>Include comma-separated related resource.</p>
+            </p>
+                </form>
+
+            <h2 id="documents-POSTapi-documents">Create document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-documents">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/documents" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "name=sample" \
+    --form "user_id=1" \
+    --form "file=@C:\msys64\tmp\php2793.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('name', 'sample');
+body.append('user_id', '1');
+body.append('file', document.querySelector('input[name="file"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-documents">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 52
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;sample&quot;,
+        &quot;user_id&quot;: 1,
+        &quot;updated_at&quot;: &quot;2022-10-30T13:22:19.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2022-10-30T13:22:19.000000Z&quot;,
+        &quot;id&quot;: 7
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-documents" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-documents"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-documents"></code></pre>
+</span>
+<span id="execution-error-POSTapi-documents" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-documents"></code></pre>
+</span>
+<form id="form-POSTapi-documents" data-method="POST"
+      data-path="api/documents"
+      data-authed="0"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-documents', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-documents"
+                    onclick="tryItOut('POSTapi-documents');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-documents"
+                    onclick="cancelTryOut('POSTapi-documents');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-documents" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/documents</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-documents"
+               value="sample"
+               data-component="body" hidden>
+    <br>
+<p>Document name.</p>
+        </p>
+                <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-documents"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>User ID.</p>
+        </p>
+                <p>
+            <b><code>file</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="file"
+               data-endpoint="POSTapi-documents"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Attachment for document.</p>
+        </p>
+        </form>
+
+            <h2 id="documents-PUTapi-documents--document-">Update document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-documents--document-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/documents/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"sample\",
+    \"user_id\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "sample",
+    "user_id": 1
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-documents--document-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 51
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;user_id&quot;: 1,
+        &quot;name&quot;: &quot;sample&quot;,
+        &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-10-30T13:22:19.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-documents--document-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-documents--document-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-documents--document-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-documents--document-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-documents--document-"></code></pre>
+</span>
+<form id="form-PUTapi-documents--document-" data-method="PUT"
+      data-path="api/documents/{document}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-documents--document-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-documents--document-"
+                    onclick="tryItOut('PUTapi-documents--document-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-documents--document-"
+                    onclick="cancelTryOut('PUTapi-documents--document-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-documents--document-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/documents/{document}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>document</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="document"
+               data-endpoint="PUTapi-documents--document-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PUTapi-documents--document-"
+               value="sample"
+               data-component="body" hidden>
+    <br>
+<p>Document name.</p>
+        </p>
+                <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="PUTapi-documents--document-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>User ID.</p>
+        </p>
+                <p>
+            <b><code>file</code></b>&nbsp;&nbsp;<small>file</small>     <i>optional</i> &nbsp;
+                <input type="file"
+               name="file"
+               data-endpoint="PUTapi-documents--document-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Attachment for document.</p>
+        </p>
+        </form>
+
+            <h2 id="documents-DELETEapi-documents--document-">Delete document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-documents--document-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/documents/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-documents--document-">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 50
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+<code>[Empty response]</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-documents--document-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-documents--document-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-documents--document-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-documents--document-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-documents--document-"></code></pre>
+</span>
+<form id="form-DELETEapi-documents--document-" data-method="DELETE"
+      data-path="api/documents/{document}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-documents--document-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-documents--document-"
+                    onclick="tryItOut('DELETEapi-documents--document-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-documents--document-"
+                    onclick="cancelTryOut('DELETEapi-documents--document-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-documents--document-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/documents/{document}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>document</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="document"
+               data-endpoint="DELETEapi-documents--document-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                    </form>
+
+            <h2 id="documents-GETapi-documents--document--download">Download a document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-documents--document--download">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/documents/2/download" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/2/download"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-documents--document--download">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">content-type: application/pdf
+content-disposition: attachment; filename=quam.pdf
+cache-control: no-cache, private
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 49
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json"></code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-documents--document--download" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-documents--document--download"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-documents--document--download"></code></pre>
+</span>
+<span id="execution-error-GETapi-documents--document--download" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-documents--document--download"></code></pre>
+</span>
+<form id="form-GETapi-documents--document--download" data-method="GET"
+      data-path="api/documents/{document}/download"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-documents--document--download', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-documents--document--download"
+                    onclick="tryItOut('GETapi-documents--document--download');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-documents--document--download"
+                    onclick="cancelTryOut('GETapi-documents--document--download');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-documents--document--download" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/documents/{document}/download</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>document</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="document"
+               data-endpoint="GETapi-documents--document--download"
+               value="2"
+               data-component="url" hidden>
+    <br>
+<p>Document ID.</p>
+            </p>
+                    </form>
+
+        <h1 id="users">Users</h1>
+
+    <p>APIs for managing Users</p>
+
+            <h2 id="users-GETapi-users">List users</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-users">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/users?filter[id]=1&amp;include=documents.attachments&amp;page=1&amp;limit=5" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/users"
+);
+
+const params = {
+    "filter[id]": "1",
+    "include": "documents.attachments",
+    "page": "1",
+    "limit": "5",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-users">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Hattie Bartell V&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;documents&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;user_id&quot;: 1,
+                    &quot;name&quot;: &quot;explicabo.pdf&quot;,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;attachments&quot;: [
+                        {
+                            &quot;id&quot;: 1,
+                            &quot;disk&quot;: &quot;public&quot;,
+                            &quot;directory&quot;: &quot;media/documents/1&quot;,
+                            &quot;filename&quot;: &quot;sample&quot;,
+                            &quot;extension&quot;: &quot;pdf&quot;,
+                            &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                            &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                            &quot;size&quot;: 3028,
+                            &quot;variant_name&quot;: null,
+                            &quot;original_media_id&quot;: null,
+                            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;version&quot;: 1,
+                            &quot;pivot&quot;: {
+                                &quot;mediable_id&quot;: 1,
+                                &quot;media_id&quot;: 1,
+                                &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                                &quot;tag&quot;: &quot;attachments&quot;,
+                                &quot;order&quot;: 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Dr. Clyde Hirthe PhD&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;documents&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;user_id&quot;: 2,
+                    &quot;name&quot;: &quot;quam.pdf&quot;,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;attachments&quot;: [
+                        {
+                            &quot;id&quot;: 2,
+                            &quot;disk&quot;: &quot;public&quot;,
+                            &quot;directory&quot;: &quot;media/documents/2&quot;,
+                            &quot;filename&quot;: &quot;sample&quot;,
+                            &quot;extension&quot;: &quot;pdf&quot;,
+                            &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                            &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                            &quot;size&quot;: 3028,
+                            &quot;variant_name&quot;: null,
+                            &quot;original_media_id&quot;: null,
+                            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;version&quot;: 1,
+                            &quot;pivot&quot;: {
+                                &quot;mediable_id&quot;: 2,
+                                &quot;media_id&quot;: 2,
+                                &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                                &quot;tag&quot;: &quot;attachments&quot;,
+                                &quot;order&quot;: 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Makenna Thiel&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;documents&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;user_id&quot;: 3,
+                    &quot;name&quot;: &quot;autem.pdf&quot;,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;attachments&quot;: [
+                        {
+                            &quot;id&quot;: 3,
+                            &quot;disk&quot;: &quot;public&quot;,
+                            &quot;directory&quot;: &quot;media/documents/3&quot;,
+                            &quot;filename&quot;: &quot;sample&quot;,
+                            &quot;extension&quot;: &quot;pdf&quot;,
+                            &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                            &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                            &quot;size&quot;: 3028,
+                            &quot;variant_name&quot;: null,
+                            &quot;original_media_id&quot;: null,
+                            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;version&quot;: 1,
+                            &quot;pivot&quot;: {
+                                &quot;mediable_id&quot;: 3,
+                                &quot;media_id&quot;: 3,
+                                &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                                &quot;tag&quot;: &quot;attachments&quot;,
+                                &quot;order&quot;: 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Edgardo Torp&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;documents&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;user_id&quot;: 4,
+                    &quot;name&quot;: &quot;maiores.pdf&quot;,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;attachments&quot;: [
+                        {
+                            &quot;id&quot;: 4,
+                            &quot;disk&quot;: &quot;public&quot;,
+                            &quot;directory&quot;: &quot;media/documents/4&quot;,
+                            &quot;filename&quot;: &quot;sample&quot;,
+                            &quot;extension&quot;: &quot;pdf&quot;,
+                            &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                            &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                            &quot;size&quot;: 3028,
+                            &quot;variant_name&quot;: null,
+                            &quot;original_media_id&quot;: null,
+                            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;version&quot;: 1,
+                            &quot;pivot&quot;: {
+                                &quot;mediable_id&quot;: 4,
+                                &quot;media_id&quot;: 4,
+                                &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                                &quot;tag&quot;: &quot;attachments&quot;,
+                                &quot;order&quot;: 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;name&quot;: &quot;Miss Nikita Lueilwitz&quot;,
+            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+            &quot;documents&quot;: [
+                {
+                    &quot;id&quot;: 5,
+                    &quot;user_id&quot;: 5,
+                    &quot;name&quot;: &quot;voluptatem.pdf&quot;,
+                    &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                    &quot;attachments&quot;: [
+                        {
+                            &quot;id&quot;: 5,
+                            &quot;disk&quot;: &quot;public&quot;,
+                            &quot;directory&quot;: &quot;media/documents/5&quot;,
+                            &quot;filename&quot;: &quot;sample&quot;,
+                            &quot;extension&quot;: &quot;pdf&quot;,
+                            &quot;mime_type&quot;: &quot;application/pdf&quot;,
+                            &quot;aggregate_type&quot;: &quot;pdf&quot;,
+                            &quot;size&quot;: 3028,
+                            &quot;variant_name&quot;: null,
+                            &quot;original_media_id&quot;: null,
+                            &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+                            &quot;version&quot;: 1,
+                            &quot;pivot&quot;: {
+                                &quot;mediable_id&quot;: 5,
+                                &quot;media_id&quot;: 5,
+                                &quot;mediable_type&quot;: &quot;App\\Domain\\Documents\\Models\\Document&quot;,
+                                &quot;tag&quot;: &quot;attachments&quot;,
+                                &quot;order&quot;: 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    &quot;pagination&quot;: {
+        &quot;count&quot;: 5,
+        &quot;total&quot;: 5,
+        &quot;perPage&quot;: 5,
+        &quot;currentPage&quot;: 1,
+        &quot;totalPages&quot;: 1,
+        &quot;links&quot;: {}
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-users" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-users"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-users"></code></pre>
+</span>
+<span id="execution-error-GETapi-users" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-users"></code></pre>
+</span>
+<form id="form-GETapi-users" data-method="GET"
+      data-path="api/users"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-users', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-users"
+                    onclick="tryItOut('GETapi-users');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-users"
+                    onclick="cancelTryOut('GETapi-users');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-users" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/users</code></b>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>filter[id]</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="filter[id]"
+               data-endpoint="GETapi-users"
+               value="1"
+               data-component="query" hidden>
+    <br>
+<p>User ID.</p>
+            </p>
+                    <p>
+                <b><code>filter[search]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[search]"
+               data-endpoint="GETapi-users"
+               value=""
+               data-component="query" hidden>
+    <br>
+<p>Search by user's name.</p>
+            </p>
+                    <p>
+                <b><code>include</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="include"
+               data-endpoint="GETapi-users"
+               value="documents.attachments"
+               data-component="query" hidden>
+    <br>
+<p>Include comma-separated related resource.</p>
+            </p>
+                    <p>
+                <b><code>cursor</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="cursor"
+               data-endpoint="GETapi-users"
+               value=""
+               data-component="query" hidden>
+    <br>
+<p>Page cursor.</p>
+            </p>
+                    <p>
+                <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETapi-users"
+               value="1"
+               data-component="query" hidden>
+    <br>
+<p>Page number.</p>
+            </p>
+                    <p>
+                <b><code>limit</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="limit"
+               data-endpoint="GETapi-users"
+               value="5"
+               data-component="query" hidden>
+    <br>
+<p>Page size.</p>
+            </p>
+                </form>
+
+            <h2 id="users-GETapi-users--id-">Fetch a user</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/users/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/users/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-users--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Hattie Bartell V&quot;,
+        &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-users--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-users--id-"></code></pre>
+</span>
+<form id="form-GETapi-users--id-" data-method="GET"
+      data-path="api/users/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-users--id-"
+                    onclick="tryItOut('GETapi-users--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-users--id-"
+                    onclick="cancelTryOut('GETapi-users--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-users--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/users/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-users--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>User ID.</p>
+            </p>
+                    </form>
+
+            <h2 id="users-POSTapi-users">Create a user</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-users">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/users" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"Juan\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/users"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "Juan"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-users">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 57
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Juan&quot;,
+        &quot;updated_at&quot;: &quot;2022-10-30T13:22:18.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2022-10-30T13:22:18.000000Z&quot;,
+        &quot;id&quot;: 7
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-users" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-users"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-users"></code></pre>
+</span>
+<span id="execution-error-POSTapi-users" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-users"></code></pre>
+</span>
+<form id="form-POSTapi-users" data-method="POST"
+      data-path="api/users"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-users', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-users"
+                    onclick="tryItOut('POSTapi-users');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-users"
+                    onclick="cancelTryOut('POSTapi-users');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-users" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/users</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-users"
+               value="Juan"
+               data-component="body" hidden>
+    <br>
+<p>User's name.</p>
+        </p>
+        </form>
+
+            <h2 id="users-PUTapi-users--user-">Update a user</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-users--user-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/users/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"Juan\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/users/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "Juan"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-users--user-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 56
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Juan&quot;,
+        &quot;created_at&quot;: &quot;2022-10-30T13:20:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-10-30T13:22:19.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-users--user-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-users--user-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-users--user-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-users--user-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-users--user-"></code></pre>
+</span>
+<form id="form-PUTapi-users--user-" data-method="PUT"
+      data-path="api/users/{user}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-users--user-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-users--user-"
+                    onclick="tryItOut('PUTapi-users--user-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-users--user-"
+                    onclick="cancelTryOut('PUTapi-users--user-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-users--user-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/users/{user}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>user</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user"
+               data-endpoint="PUTapi-users--user-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>User ID.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PUTapi-users--user-"
+               value="Juan"
+               data-component="body" hidden>
+    <br>
+<p>User's name.</p>
+        </p>
+        </form>
+
+            <h2 id="users-DELETEapi-users--user-">Delete a user</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-users--user-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/users/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/users/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-users--user-">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 55
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+<code>[Empty response]</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-users--user-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-users--user-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-users--user-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-users--user-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-users--user-"></code></pre>
+</span>
+<form id="form-DELETEapi-users--user-" data-method="DELETE"
+      data-path="api/users/{user}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-users--user-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-users--user-"
+                    onclick="tryItOut('DELETEapi-users--user-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-users--user-"
+                    onclick="cancelTryOut('DELETEapi-users--user-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-users--user-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/users/{user}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>user</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user"
+               data-endpoint="DELETEapi-users--user-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>User ID.</p>
+            </p>
+                    </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

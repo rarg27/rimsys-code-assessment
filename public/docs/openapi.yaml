@@ -1,0 +1,1865 @@
+openapi: 3.0.3
+info:
+  title: rimsys-assessment
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  '/api/documents/{document}/attachments':
+    get:
+      summary: 'List document''s attachments'
+      description: ''
+      parameters:
+        -
+          in: query
+          name: 'filter[search]'
+          description: 'Filter by Document name.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by Document name.'
+            example: null
+        -
+          in: query
+          name: sort
+          description: 'Sort by field.'
+          example: filename
+          required: false
+          schema:
+            type: string
+            description: 'Sort by field.'
+            example: filename
+        -
+          in: query
+          name: cursor
+          description: 'Page cursor.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Page cursor.'
+            example: null
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+        -
+          in: query
+          name: limit
+          description: 'Page size.'
+          example: 5
+          required: false
+          schema:
+            type: integer
+            description: 'Page size.'
+            example: 5
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    -
+                      id: 1
+                      disk: public
+                      directory: media/documents/1
+                      filename: sample
+                      extension: pdf
+                      mime_type: application/pdf
+                      aggregate_type: pdf
+                      size: 3028
+                      variant_name: null
+                      original_media_id: null
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      media_id: 1
+                      mediable_type: App\Domain\Documents\Models\Document
+                      mediable_id: 1
+                      tag: attachments
+                      order: 1
+                      version: 1
+                  pagination:
+                    count: 1
+                    total: 1
+                    perPage: 5
+                    currentPage: 1
+                    totalPages: 1
+                    links: {  }
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        disk: public
+                        directory: media/documents/1
+                        filename: sample
+                        extension: pdf
+                        mime_type: application/pdf
+                        aggregate_type: pdf
+                        size: 3028
+                        variant_name: null
+                        original_media_id: null
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        media_id: 1
+                        mediable_type: App\Domain\Documents\Models\Document
+                        mediable_id: 1
+                        tag: attachments
+                        order: 1
+                        version: 1
+                    items:
+                      type: object
+                  pagination:
+                    type: object
+                    example:
+                      count: 1
+                      total: 1
+                      perPage: 5
+                      currentPage: 1
+                      totalPages: 1
+                      links: {  }
+      tags:
+        - 'Document Attachments'
+      security: []
+    post:
+      summary: 'Create an attachment for document'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    id: 9
+                    disk: public
+                    directory: media/documents/1
+                    filename: test-1
+                    extension: jpg
+                    mime_type: image/jpeg
+                    aggregate_type: image
+                    size: 10240
+                    variant_name: null
+                    original_media_id: null
+                    created_at: '2022-10-30T13:22:19.000000Z'
+                    updated_at: '2022-10-30T13:22:19.000000Z'
+                    version: 2
+                    pivot:
+                      mediable_id: 1
+                      media_id: 9
+                      mediable_type: App\Domain\Documents\Models\Document
+                      tag: attachments
+                      order: 2
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    example:
+                      id: 9
+                      disk: public
+                      directory: media/documents/1
+                      filename: test-1
+                      extension: jpg
+                      mime_type: image/jpeg
+                      aggregate_type: image
+                      size: 10240
+                      variant_name: null
+                      original_media_id: null
+                      created_at: '2022-10-30T13:22:19.000000Z'
+                      updated_at: '2022-10-30T13:22:19.000000Z'
+                      version: 2
+                      pivot:
+                        mediable_id: 1
+                        media_id: 9
+                        mediable_type: App\Domain\Documents\Models\Document
+                        tag: attachments
+                        order: 2
+      tags:
+        - 'Document Attachments'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 'Attachment for document.'
+              required:
+                - file
+      security: []
+    parameters:
+      -
+        in: path
+        name: document
+        description: 'Document ID.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/documents/{document}/attachments/{id}':
+    put:
+      summary: 'Update attachment of a document'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    id: 1
+                    disk: public
+                    directory: media/documents/1
+                    filename: test.jpg-1
+                    extension: jpg
+                    mime_type: image/jpeg
+                    aggregate_type: image
+                    size: 10240
+                    variant_name: null
+                    original_media_id: null
+                    created_at: '2022-10-30T13:20:35.000000Z'
+                    updated_at: '2022-10-30T13:22:19.000000Z'
+                    version: 1
+                    pivot:
+                      mediable_id: 1
+                      media_id: 1
+                      mediable_type: App\Domain\Documents\Models\Document
+                      tag: attachments
+                      order: 1
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      disk: public
+                      directory: media/documents/1
+                      filename: test.jpg-1
+                      extension: jpg
+                      mime_type: image/jpeg
+                      aggregate_type: image
+                      size: 10240
+                      variant_name: null
+                      original_media_id: null
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:22:19.000000Z'
+                      version: 1
+                      pivot:
+                        mediable_id: 1
+                        media_id: 1
+                        mediable_type: App\Domain\Documents\Models\Document
+                        tag: attachments
+                        order: 1
+      tags:
+        - 'Document Attachments'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 'Attachment for document.'
+              required:
+                - file
+      security: []
+    delete:
+      summary: 'Delete attachment of a document'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        204:
+          description: ''
+      tags:
+        - 'Document Attachments'
+      security: []
+    parameters:
+      -
+        in: path
+        name: document
+        description: 'Document ID.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: id
+        description: 'Attachment ID.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/documents/{document}/attachments/{id}/download':
+    get:
+      summary: 'Download attachment of a document'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - 'Document Attachments'
+      security: []
+    parameters:
+      -
+        in: path
+        name: document
+        description: 'Document ID.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: id
+        description: 'Attachment ID.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/documents:
+    get:
+      summary: 'List documents'
+      description: ''
+      parameters:
+        -
+          in: query
+          name: 'filter[id]'
+          description: 'Filter by comma-separated ID.'
+          example: '1'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by comma-separated ID.'
+            example: '1'
+        -
+          in: query
+          name: 'filter[user_id]'
+          description: 'Filter by comma-separated User ID.'
+          example: '1'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by comma-separated User ID.'
+            example: '1'
+        -
+          in: query
+          name: 'filter[search]'
+          description: 'Search by document''s name.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Search by document''s name.'
+            example: null
+        -
+          in: query
+          name: sort
+          description: 'Sort by field.'
+          example: '-created_at'
+          required: false
+          schema:
+            type: string
+            description: 'Sort by field.'
+            example: '-created_at'
+        -
+          in: query
+          name: include
+          description: 'Include comma-separated related resource.'
+          example: attachments
+          required: false
+          schema:
+            type: string
+            description: 'Include comma-separated related resource.'
+            example: attachments
+        -
+          in: query
+          name: cursor
+          description: 'Page cursor.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Page cursor.'
+            example: null
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+        -
+          in: query
+          name: limit
+          description: 'Page size.'
+          example: 5
+          required: false
+          schema:
+            type: integer
+            description: 'Page size.'
+            example: 5
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    -
+                      id: 1
+                      user_id: 1
+                      name: explicabo.pdf
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      attachments:
+                        -
+                          id: 1
+                          disk: public
+                          directory: media/documents/1
+                          filename: sample
+                          extension: pdf
+                          mime_type: application/pdf
+                          aggregate_type: pdf
+                          size: 3028
+                          variant_name: null
+                          original_media_id: null
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          version: 1
+                          pivot:
+                            mediable_id: 1
+                            media_id: 1
+                            mediable_type: App\Domain\Documents\Models\Document
+                            tag: attachments
+                            order: 1
+                    -
+                      id: 2
+                      user_id: 2
+                      name: quam.pdf
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      attachments:
+                        -
+                          id: 2
+                          disk: public
+                          directory: media/documents/2
+                          filename: sample
+                          extension: pdf
+                          mime_type: application/pdf
+                          aggregate_type: pdf
+                          size: 3028
+                          variant_name: null
+                          original_media_id: null
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          version: 1
+                          pivot:
+                            mediable_id: 2
+                            media_id: 2
+                            mediable_type: App\Domain\Documents\Models\Document
+                            tag: attachments
+                            order: 1
+                    -
+                      id: 3
+                      user_id: 3
+                      name: autem.pdf
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      attachments:
+                        -
+                          id: 3
+                          disk: public
+                          directory: media/documents/3
+                          filename: sample
+                          extension: pdf
+                          mime_type: application/pdf
+                          aggregate_type: pdf
+                          size: 3028
+                          variant_name: null
+                          original_media_id: null
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          version: 1
+                          pivot:
+                            mediable_id: 3
+                            media_id: 3
+                            mediable_type: App\Domain\Documents\Models\Document
+                            tag: attachments
+                            order: 1
+                    -
+                      id: 4
+                      user_id: 4
+                      name: maiores.pdf
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      attachments:
+                        -
+                          id: 4
+                          disk: public
+                          directory: media/documents/4
+                          filename: sample
+                          extension: pdf
+                          mime_type: application/pdf
+                          aggregate_type: pdf
+                          size: 3028
+                          variant_name: null
+                          original_media_id: null
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          version: 1
+                          pivot:
+                            mediable_id: 4
+                            media_id: 4
+                            mediable_type: App\Domain\Documents\Models\Document
+                            tag: attachments
+                            order: 1
+                    -
+                      id: 5
+                      user_id: 5
+                      name: voluptatem.pdf
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      attachments:
+                        -
+                          id: 5
+                          disk: public
+                          directory: media/documents/5
+                          filename: sample
+                          extension: pdf
+                          mime_type: application/pdf
+                          aggregate_type: pdf
+                          size: 3028
+                          variant_name: null
+                          original_media_id: null
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          version: 1
+                          pivot:
+                            mediable_id: 5
+                            media_id: 5
+                            mediable_type: App\Domain\Documents\Models\Document
+                            tag: attachments
+                            order: 1
+                  pagination:
+                    count: 5
+                    total: 5
+                    perPage: 5
+                    currentPage: 1
+                    totalPages: 1
+                    links: {  }
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        user_id: 1
+                        name: explicabo.pdf
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        attachments:
+                          -
+                            id: 1
+                            disk: public
+                            directory: media/documents/1
+                            filename: sample
+                            extension: pdf
+                            mime_type: application/pdf
+                            aggregate_type: pdf
+                            size: 3028
+                            variant_name: null
+                            original_media_id: null
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            version: 1
+                            pivot:
+                              mediable_id: 1
+                              media_id: 1
+                              mediable_type: App\Domain\Documents\Models\Document
+                              tag: attachments
+                              order: 1
+                      -
+                        id: 2
+                        user_id: 2
+                        name: quam.pdf
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        attachments:
+                          -
+                            id: 2
+                            disk: public
+                            directory: media/documents/2
+                            filename: sample
+                            extension: pdf
+                            mime_type: application/pdf
+                            aggregate_type: pdf
+                            size: 3028
+                            variant_name: null
+                            original_media_id: null
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            version: 1
+                            pivot:
+                              mediable_id: 2
+                              media_id: 2
+                              mediable_type: App\Domain\Documents\Models\Document
+                              tag: attachments
+                              order: 1
+                      -
+                        id: 3
+                        user_id: 3
+                        name: autem.pdf
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        attachments:
+                          -
+                            id: 3
+                            disk: public
+                            directory: media/documents/3
+                            filename: sample
+                            extension: pdf
+                            mime_type: application/pdf
+                            aggregate_type: pdf
+                            size: 3028
+                            variant_name: null
+                            original_media_id: null
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            version: 1
+                            pivot:
+                              mediable_id: 3
+                              media_id: 3
+                              mediable_type: App\Domain\Documents\Models\Document
+                              tag: attachments
+                              order: 1
+                      -
+                        id: 4
+                        user_id: 4
+                        name: maiores.pdf
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        attachments:
+                          -
+                            id: 4
+                            disk: public
+                            directory: media/documents/4
+                            filename: sample
+                            extension: pdf
+                            mime_type: application/pdf
+                            aggregate_type: pdf
+                            size: 3028
+                            variant_name: null
+                            original_media_id: null
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            version: 1
+                            pivot:
+                              mediable_id: 4
+                              media_id: 4
+                              mediable_type: App\Domain\Documents\Models\Document
+                              tag: attachments
+                              order: 1
+                      -
+                        id: 5
+                        user_id: 5
+                        name: voluptatem.pdf
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        attachments:
+                          -
+                            id: 5
+                            disk: public
+                            directory: media/documents/5
+                            filename: sample
+                            extension: pdf
+                            mime_type: application/pdf
+                            aggregate_type: pdf
+                            size: 3028
+                            variant_name: null
+                            original_media_id: null
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            version: 1
+                            pivot:
+                              mediable_id: 5
+                              media_id: 5
+                              mediable_type: App\Domain\Documents\Models\Document
+                              tag: attachments
+                              order: 1
+                    items:
+                      type: object
+                  pagination:
+                    type: object
+                    example:
+                      count: 5
+                      total: 5
+                      perPage: 5
+                      currentPage: 1
+                      totalPages: 1
+                      links: {  }
+      tags:
+        - Documents
+      security: []
+    post:
+      summary: 'Create document'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    name: sample
+                    user_id: 1
+                    updated_at: '2022-10-30T13:22:19.000000Z'
+                    created_at: '2022-10-30T13:22:19.000000Z'
+                    id: 7
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    example:
+                      name: sample
+                      user_id: 1
+                      updated_at: '2022-10-30T13:22:19.000000Z'
+                      created_at: '2022-10-30T13:22:19.000000Z'
+                      id: 7
+      tags:
+        - Documents
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Document name.'
+                  example: sample
+                user_id:
+                  type: integer
+                  description: 'User ID.'
+                  example: 1
+                file:
+                  type: string
+                  format: binary
+                  description: 'Attachment for document.'
+              required:
+                - file
+      security: []
+  '/api/documents/{id}':
+    get:
+      summary: 'Fetch a document'
+      description: ''
+      parameters:
+        -
+          in: query
+          name: include
+          description: 'Include comma-separated related resource.'
+          example: attachments
+          required: false
+          schema:
+            type: string
+            description: 'Include comma-separated related resource.'
+            example: attachments
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    id: 1
+                    user_id: 1
+                    name: explicabo.pdf
+                    created_at: '2022-10-30T13:20:35.000000Z'
+                    updated_at: '2022-10-30T13:20:35.000000Z'
+                    attachments:
+                      -
+                        id: 1
+                        disk: public
+                        directory: media/documents/1
+                        filename: sample
+                        extension: pdf
+                        mime_type: application/pdf
+                        aggregate_type: pdf
+                        size: 3028
+                        variant_name: null
+                        original_media_id: null
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        version: 1
+                        pivot:
+                          mediable_id: 1
+                          media_id: 1
+                          mediable_type: App\Domain\Documents\Models\Document
+                          tag: attachments
+                          order: 1
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      user_id: 1
+                      name: explicabo.pdf
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      attachments:
+                        -
+                          id: 1
+                          disk: public
+                          directory: media/documents/1
+                          filename: sample
+                          extension: pdf
+                          mime_type: application/pdf
+                          aggregate_type: pdf
+                          size: 3028
+                          variant_name: null
+                          original_media_id: null
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          version: 1
+                          pivot:
+                            mediable_id: 1
+                            media_id: 1
+                            mediable_type: App\Domain\Documents\Models\Document
+                            tag: attachments
+                            order: 1
+      tags:
+        - Documents
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Document ID.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/documents/{document}':
+    put:
+      summary: 'Update document'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    id: 1
+                    user_id: 1
+                    name: sample
+                    created_at: '2022-10-30T13:20:35.000000Z'
+                    updated_at: '2022-10-30T13:22:19.000000Z'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      user_id: 1
+                      name: sample
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:22:19.000000Z'
+      tags:
+        - Documents
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Document name.'
+                  example: sample
+                user_id:
+                  type: integer
+                  description: 'User ID.'
+                  example: 1
+                file:
+                  type: string
+                  format: binary
+                  description: 'Attachment for document.'
+      security: []
+    delete:
+      summary: 'Delete document'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        204:
+          description: ''
+      tags:
+        - Documents
+      security: []
+    parameters:
+      -
+        in: path
+        name: document
+        description: 'Document ID.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/documents/{document}/download':
+    get:
+      summary: 'Download a document'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Documents
+      security: []
+    parameters:
+      -
+        in: path
+        name: document
+        description: 'Document ID.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/users:
+    get:
+      summary: 'List users'
+      description: ''
+      parameters:
+        -
+          in: query
+          name: 'filter[id]'
+          description: 'User ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'User ID.'
+            example: 1
+        -
+          in: query
+          name: 'filter[search]'
+          description: 'Search by user''s name.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Search by user''s name.'
+            example: null
+        -
+          in: query
+          name: include
+          description: 'Include comma-separated related resource.'
+          example: documents.attachments
+          required: false
+          schema:
+            type: string
+            description: 'Include comma-separated related resource.'
+            example: documents.attachments
+        -
+          in: query
+          name: cursor
+          description: 'Page cursor.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Page cursor.'
+            example: null
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+        -
+          in: query
+          name: limit
+          description: 'Page size.'
+          example: 5
+          required: false
+          schema:
+            type: integer
+            description: 'Page size.'
+            example: 5
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    -
+                      id: 1
+                      name: 'Hattie Bartell V'
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      documents:
+                        -
+                          id: 1
+                          user_id: 1
+                          name: explicabo.pdf
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          attachments:
+                            -
+                              id: 1
+                              disk: public
+                              directory: media/documents/1
+                              filename: sample
+                              extension: pdf
+                              mime_type: application/pdf
+                              aggregate_type: pdf
+                              size: 3028
+                              variant_name: null
+                              original_media_id: null
+                              created_at: '2022-10-30T13:20:35.000000Z'
+                              updated_at: '2022-10-30T13:20:35.000000Z'
+                              version: 1
+                              pivot:
+                                mediable_id: 1
+                                media_id: 1
+                                mediable_type: App\Domain\Documents\Models\Document
+                                tag: attachments
+                                order: 1
+                    -
+                      id: 2
+                      name: 'Dr. Clyde Hirthe PhD'
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      documents:
+                        -
+                          id: 2
+                          user_id: 2
+                          name: quam.pdf
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          attachments:
+                            -
+                              id: 2
+                              disk: public
+                              directory: media/documents/2
+                              filename: sample
+                              extension: pdf
+                              mime_type: application/pdf
+                              aggregate_type: pdf
+                              size: 3028
+                              variant_name: null
+                              original_media_id: null
+                              created_at: '2022-10-30T13:20:35.000000Z'
+                              updated_at: '2022-10-30T13:20:35.000000Z'
+                              version: 1
+                              pivot:
+                                mediable_id: 2
+                                media_id: 2
+                                mediable_type: App\Domain\Documents\Models\Document
+                                tag: attachments
+                                order: 1
+                    -
+                      id: 3
+                      name: 'Makenna Thiel'
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      documents:
+                        -
+                          id: 3
+                          user_id: 3
+                          name: autem.pdf
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          attachments:
+                            -
+                              id: 3
+                              disk: public
+                              directory: media/documents/3
+                              filename: sample
+                              extension: pdf
+                              mime_type: application/pdf
+                              aggregate_type: pdf
+                              size: 3028
+                              variant_name: null
+                              original_media_id: null
+                              created_at: '2022-10-30T13:20:35.000000Z'
+                              updated_at: '2022-10-30T13:20:35.000000Z'
+                              version: 1
+                              pivot:
+                                mediable_id: 3
+                                media_id: 3
+                                mediable_type: App\Domain\Documents\Models\Document
+                                tag: attachments
+                                order: 1
+                    -
+                      id: 4
+                      name: 'Edgardo Torp'
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      documents:
+                        -
+                          id: 4
+                          user_id: 4
+                          name: maiores.pdf
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          attachments:
+                            -
+                              id: 4
+                              disk: public
+                              directory: media/documents/4
+                              filename: sample
+                              extension: pdf
+                              mime_type: application/pdf
+                              aggregate_type: pdf
+                              size: 3028
+                              variant_name: null
+                              original_media_id: null
+                              created_at: '2022-10-30T13:20:35.000000Z'
+                              updated_at: '2022-10-30T13:20:35.000000Z'
+                              version: 1
+                              pivot:
+                                mediable_id: 4
+                                media_id: 4
+                                mediable_type: App\Domain\Documents\Models\Document
+                                tag: attachments
+                                order: 1
+                    -
+                      id: 5
+                      name: 'Miss Nikita Lueilwitz'
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+                      documents:
+                        -
+                          id: 5
+                          user_id: 5
+                          name: voluptatem.pdf
+                          created_at: '2022-10-30T13:20:35.000000Z'
+                          updated_at: '2022-10-30T13:20:35.000000Z'
+                          attachments:
+                            -
+                              id: 5
+                              disk: public
+                              directory: media/documents/5
+                              filename: sample
+                              extension: pdf
+                              mime_type: application/pdf
+                              aggregate_type: pdf
+                              size: 3028
+                              variant_name: null
+                              original_media_id: null
+                              created_at: '2022-10-30T13:20:35.000000Z'
+                              updated_at: '2022-10-30T13:20:35.000000Z'
+                              version: 1
+                              pivot:
+                                mediable_id: 5
+                                media_id: 5
+                                mediable_type: App\Domain\Documents\Models\Document
+                                tag: attachments
+                                order: 1
+                  pagination:
+                    count: 5
+                    total: 5
+                    perPage: 5
+                    currentPage: 1
+                    totalPages: 1
+                    links: {  }
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Hattie Bartell V'
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        documents:
+                          -
+                            id: 1
+                            user_id: 1
+                            name: explicabo.pdf
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            attachments:
+                              -
+                                id: 1
+                                disk: public
+                                directory: media/documents/1
+                                filename: sample
+                                extension: pdf
+                                mime_type: application/pdf
+                                aggregate_type: pdf
+                                size: 3028
+                                variant_name: null
+                                original_media_id: null
+                                created_at: '2022-10-30T13:20:35.000000Z'
+                                updated_at: '2022-10-30T13:20:35.000000Z'
+                                version: 1
+                                pivot:
+                                  mediable_id: 1
+                                  media_id: 1
+                                  mediable_type: App\Domain\Documents\Models\Document
+                                  tag: attachments
+                                  order: 1
+                      -
+                        id: 2
+                        name: 'Dr. Clyde Hirthe PhD'
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        documents:
+                          -
+                            id: 2
+                            user_id: 2
+                            name: quam.pdf
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            attachments:
+                              -
+                                id: 2
+                                disk: public
+                                directory: media/documents/2
+                                filename: sample
+                                extension: pdf
+                                mime_type: application/pdf
+                                aggregate_type: pdf
+                                size: 3028
+                                variant_name: null
+                                original_media_id: null
+                                created_at: '2022-10-30T13:20:35.000000Z'
+                                updated_at: '2022-10-30T13:20:35.000000Z'
+                                version: 1
+                                pivot:
+                                  mediable_id: 2
+                                  media_id: 2
+                                  mediable_type: App\Domain\Documents\Models\Document
+                                  tag: attachments
+                                  order: 1
+                      -
+                        id: 3
+                        name: 'Makenna Thiel'
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        documents:
+                          -
+                            id: 3
+                            user_id: 3
+                            name: autem.pdf
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            attachments:
+                              -
+                                id: 3
+                                disk: public
+                                directory: media/documents/3
+                                filename: sample
+                                extension: pdf
+                                mime_type: application/pdf
+                                aggregate_type: pdf
+                                size: 3028
+                                variant_name: null
+                                original_media_id: null
+                                created_at: '2022-10-30T13:20:35.000000Z'
+                                updated_at: '2022-10-30T13:20:35.000000Z'
+                                version: 1
+                                pivot:
+                                  mediable_id: 3
+                                  media_id: 3
+                                  mediable_type: App\Domain\Documents\Models\Document
+                                  tag: attachments
+                                  order: 1
+                      -
+                        id: 4
+                        name: 'Edgardo Torp'
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        documents:
+                          -
+                            id: 4
+                            user_id: 4
+                            name: maiores.pdf
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            attachments:
+                              -
+                                id: 4
+                                disk: public
+                                directory: media/documents/4
+                                filename: sample
+                                extension: pdf
+                                mime_type: application/pdf
+                                aggregate_type: pdf
+                                size: 3028
+                                variant_name: null
+                                original_media_id: null
+                                created_at: '2022-10-30T13:20:35.000000Z'
+                                updated_at: '2022-10-30T13:20:35.000000Z'
+                                version: 1
+                                pivot:
+                                  mediable_id: 4
+                                  media_id: 4
+                                  mediable_type: App\Domain\Documents\Models\Document
+                                  tag: attachments
+                                  order: 1
+                      -
+                        id: 5
+                        name: 'Miss Nikita Lueilwitz'
+                        created_at: '2022-10-30T13:20:35.000000Z'
+                        updated_at: '2022-10-30T13:20:35.000000Z'
+                        documents:
+                          -
+                            id: 5
+                            user_id: 5
+                            name: voluptatem.pdf
+                            created_at: '2022-10-30T13:20:35.000000Z'
+                            updated_at: '2022-10-30T13:20:35.000000Z'
+                            attachments:
+                              -
+                                id: 5
+                                disk: public
+                                directory: media/documents/5
+                                filename: sample
+                                extension: pdf
+                                mime_type: application/pdf
+                                aggregate_type: pdf
+                                size: 3028
+                                variant_name: null
+                                original_media_id: null
+                                created_at: '2022-10-30T13:20:35.000000Z'
+                                updated_at: '2022-10-30T13:20:35.000000Z'
+                                version: 1
+                                pivot:
+                                  mediable_id: 5
+                                  media_id: 5
+                                  mediable_type: App\Domain\Documents\Models\Document
+                                  tag: attachments
+                                  order: 1
+                    items:
+                      type: object
+                  pagination:
+                    type: object
+                    example:
+                      count: 5
+                      total: 5
+                      perPage: 5
+                      currentPage: 1
+                      totalPages: 1
+                      links: {  }
+      tags:
+        - Users
+      security: []
+    post:
+      summary: 'Create a user'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    name: Juan
+                    updated_at: '2022-10-30T13:22:18.000000Z'
+                    created_at: '2022-10-30T13:22:18.000000Z'
+                    id: 7
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    example:
+                      name: Juan
+                      updated_at: '2022-10-30T13:22:18.000000Z'
+                      created_at: '2022-10-30T13:22:18.000000Z'
+                      id: 7
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'User''s name.'
+                  example: Juan
+              required:
+                - name
+      security: []
+  '/api/users/{id}':
+    get:
+      summary: 'Fetch a user'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    id: 1
+                    name: 'Hattie Bartell V'
+                    created_at: '2022-10-30T13:20:35.000000Z'
+                    updated_at: '2022-10-30T13:20:35.000000Z'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      name: 'Hattie Bartell V'
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:20:35.000000Z'
+      tags:
+        - Users
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'User ID.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/users/{user}':
+    put:
+      summary: 'Update a user'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  data:
+                    id: 1
+                    name: Juan
+                    created_at: '2022-10-30T13:20:35.000000Z'
+                    updated_at: '2022-10-30T13:22:19.000000Z'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      name: Juan
+                      created_at: '2022-10-30T13:20:35.000000Z'
+                      updated_at: '2022-10-30T13:22:19.000000Z'
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'User''s name.'
+                  example: Juan
+              required:
+                - name
+      security: []
+    delete:
+      summary: 'Delete a user'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        204:
+          description: ''
+      tags:
+        - Users
+      security: []
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'User ID.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: 'Document Attachments'
+    description: "\nAPIs for managing Document Attachments"
+  -
+    name: Documents
+    description: "\nAPIs for managing Documents"
+  -
+    name: Users
+    description: "\nAPIs for managing Users"

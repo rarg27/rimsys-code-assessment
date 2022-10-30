@@ -2,6 +2,7 @@
 
 namespace App\Http\API\Users\Controllers;
 
+use App\Domain\Users\Actions\DeleteUser;
 use App\Domain\Users\Actions\UpsertUser;
 use App\Domain\Users\Models\User;
 use App\Http\API\BaseController;
@@ -18,6 +19,9 @@ class UserController extends BaseController
     /**
      * List users
      *
+     * @queryParam filter[id] int User ID. Example: 1
+     * @queryParam filter[search] string Search by user's name. No-example
+     * @queryParam include string Include comma-separated related resource. Example: documents.attachments
      * @queryParam cursor string Page cursor. No-example
      * @queryParam page int Page number. Example: 1
      * @queryParam limit int Page size. Example: 5
@@ -64,9 +68,9 @@ class UserController extends BaseController
      *
      * @urlParam user int required User ID. Example: 1
      */
-    public function delete(User $user)
+    public function delete(User $user, DeleteUser $deleteUser)
     {
-        $user->delete();
+        $deleteUser->do($user);
 
         return responder()->success()->respond(Response::HTTP_NO_CONTENT);
     }

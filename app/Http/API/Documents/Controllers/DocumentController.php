@@ -20,6 +20,11 @@ class DocumentController extends BaseController
     /**
      * List documents
      *
+     * @queryParam filter[id] string Filter by comma-separated ID. Example: 1
+     * @queryParam filter[user_id] string Filter by comma-separated User ID. Example: 1
+     * @queryParam filter[search] string Search by document's name. No-example
+     * @queryParam sort string Sort by field. Example: -created_at
+     * @queryParam include string Include comma-separated related resource. Example: attachments
      * @queryParam cursor string Page cursor. No-example
      * @queryParam page int Page number. Example: 1
      * @queryParam limit int Page size. Example: 5

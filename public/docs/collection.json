@@ -1,0 +1,1223 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:8000"
+        }
+    ],
+    "info": {
+        "name": "rimsys-assessment",
+        "_postman_id": "af401caf-966b-4804-8286-498b8c127515",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Document Attachments",
+            "description": "\nAPIs for managing Document Attachments",
+            "item": [
+                {
+                    "name": "List document's attachments",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:document\/attachments",
+                            "query": [
+                                {
+                                    "key": "filter%5Bsearch%5D",
+                                    "value": "",
+                                    "description": "Filter by Document name.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "filename",
+                                    "description": "Sort by field.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "cursor",
+                                    "value": "",
+                                    "description": "Page cursor.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page number.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "5",
+                                    "description": "Page size.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/documents\/:document\/attachments?filter%5Bsearch%5D=&sort=filename&cursor=&page=1&limit=5",
+                            "variable": [
+                                {
+                                    "id": "document",
+                                    "key": "document",
+                                    "value": "1",
+                                    "description": "Document ID."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "48"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":[{\"id\":1,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/1\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"media_id\":1,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"mediable_id\":1,\"tag\":\"attachments\",\"order\":1,\"version\":1}],\"pagination\":{\"count\":1,\"total\":1,\"perPage\":5,\"currentPage\":1,\"totalPages\":1,\"links\":{}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create an attachment for document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:document\/attachments",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/documents\/:document\/attachments",
+                            "variable": [
+                                {
+                                    "id": "document",
+                                    "key": "document",
+                                    "value": "1",
+                                    "description": "Document ID."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "47"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":{\"id\":9,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/1\",\"filename\":\"test-1\",\"extension\":\"jpg\",\"mime_type\":\"image\\\/jpeg\",\"aggregate_type\":\"image\",\"size\":10240,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:22:19.000000Z\",\"updated_at\":\"2022-10-30T13:22:19.000000Z\",\"version\":2,\"pivot\":{\"mediable_id\":1,\"media_id\":9,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":2}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update attachment of a document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:document\/attachments\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/documents\/:document\/attachments\/:id",
+                            "variable": [
+                                {
+                                    "id": "document",
+                                    "key": "document",
+                                    "value": "1",
+                                    "description": "Document ID."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Attachment ID."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "_method",
+                                    "value": "PUT",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "46"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":{\"id\":1,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/1\",\"filename\":\"test.jpg-1\",\"extension\":\"jpg\",\"mime_type\":\"image\\\/jpeg\",\"aggregate_type\":\"image\",\"size\":10240,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:22:19.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":1,\"media_id\":1,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete attachment of a document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:document\/attachments\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/documents\/:document\/attachments\/:id",
+                            "variable": [
+                                {
+                                    "id": "document",
+                                    "key": "document",
+                                    "value": "1",
+                                    "description": "Document ID."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Attachment ID."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "45"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 204,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Download attachment of a document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:document\/attachments\/:id\/download",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/documents\/:document\/attachments\/:id\/download",
+                            "variable": [
+                                {
+                                    "id": "document",
+                                    "key": "document",
+                                    "value": "2",
+                                    "description": "Document ID."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "Attachment ID."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/pdf"
+                                },
+                                {
+                                    "key": "content-disposition",
+                                    "value": "attachment; filename=quam.pdf"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "44"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Documents",
+            "description": "\nAPIs for managing Documents",
+            "item": [
+                {
+                    "name": "List documents",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents",
+                            "query": [
+                                {
+                                    "key": "filter%5Bid%5D",
+                                    "value": "1",
+                                    "description": "Filter by comma-separated ID.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Buser_id%5D",
+                                    "value": "1",
+                                    "description": "Filter by comma-separated User ID.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bsearch%5D",
+                                    "value": "",
+                                    "description": "Search by document's name.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "-created_at",
+                                    "description": "Sort by field.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "include",
+                                    "value": "attachments",
+                                    "description": "Include comma-separated related resource.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "cursor",
+                                    "value": "",
+                                    "description": "Page cursor.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page number.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "5",
+                                    "description": "Page size.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/documents?filter%5Bid%5D=1&filter%5Buser_id%5D=1&filter%5Bsearch%5D=&sort=-created_at&include=attachments&cursor=&page=1&limit=5"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "54"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":[{\"id\":1,\"user_id\":1,\"name\":\"explicabo.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":1,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/1\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":1,\"media_id\":1,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]},{\"id\":2,\"user_id\":2,\"name\":\"quam.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":2,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/2\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":2,\"media_id\":2,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]},{\"id\":3,\"user_id\":3,\"name\":\"autem.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":3,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/3\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":3,\"media_id\":3,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]},{\"id\":4,\"user_id\":4,\"name\":\"maiores.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":4,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/4\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":4,\"media_id\":4,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]},{\"id\":5,\"user_id\":5,\"name\":\"voluptatem.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":5,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/5\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":5,\"media_id\":5,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]}],\"pagination\":{\"count\":5,\"total\":5,\"perPage\":5,\"currentPage\":1,\"totalPages\":1,\"links\":{}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Fetch a document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:id",
+                            "query": [
+                                {
+                                    "key": "include",
+                                    "value": "attachments",
+                                    "description": "Include comma-separated related resource.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/documents\/:id?include=attachments",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Document ID."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "53"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":{\"id\":1,\"user_id\":1,\"name\":\"explicabo.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":1,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/1\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":1,\"media_id\":1,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/documents"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "sample",
+                                    "type": "text",
+                                    "description": "Document name."
+                                },
+                                {
+                                    "key": "user_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "User ID."
+                                },
+                                {
+                                    "key": "file",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "52"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":{\"name\":\"sample\",\"user_id\":1,\"updated_at\":\"2022-10-30T13:22:19.000000Z\",\"created_at\":\"2022-10-30T13:22:19.000000Z\",\"id\":7}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:document",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/documents\/:document",
+                            "variable": [
+                                {
+                                    "id": "document",
+                                    "key": "document",
+                                    "value": "1",
+                                    "description": "Document ID."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"sample\",\"user_id\":1}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "51"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":{\"id\":1,\"user_id\":1,\"name\":\"sample\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:22:19.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:document",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/documents\/:document",
+                            "variable": [
+                                {
+                                    "id": "document",
+                                    "key": "document",
+                                    "value": "1",
+                                    "description": "Document ID."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "50"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 204,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Download a document",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/documents\/:document\/download",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/documents\/:document\/download",
+                            "variable": [
+                                {
+                                    "id": "document",
+                                    "key": "document",
+                                    "value": "2",
+                                    "description": "Document ID."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/pdf"
+                                },
+                                {
+                                    "key": "content-disposition",
+                                    "value": "attachment; filename=quam.pdf"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "49"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Users",
+            "description": "\nAPIs for managing Users",
+            "item": [
+                {
+                    "name": "List users",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users",
+                            "query": [
+                                {
+                                    "key": "filter%5Bid%5D",
+                                    "value": "1",
+                                    "description": "User ID.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bsearch%5D",
+                                    "value": "",
+                                    "description": "Search by user's name.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "include",
+                                    "value": "documents.attachments",
+                                    "description": "Include comma-separated related resource.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "cursor",
+                                    "value": "",
+                                    "description": "Page cursor.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page number.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "5",
+                                    "description": "Page size.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/users?filter%5Bid%5D=1&filter%5Bsearch%5D=&include=documents.attachments&cursor=&page=1&limit=5"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":[{\"id\":1,\"name\":\"Hattie Bartell V\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"documents\":[{\"id\":1,\"user_id\":1,\"name\":\"explicabo.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":1,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/1\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":1,\"media_id\":1,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]}]},{\"id\":2,\"name\":\"Dr. Clyde Hirthe PhD\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"documents\":[{\"id\":2,\"user_id\":2,\"name\":\"quam.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":2,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/2\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":2,\"media_id\":2,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]}]},{\"id\":3,\"name\":\"Makenna Thiel\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"documents\":[{\"id\":3,\"user_id\":3,\"name\":\"autem.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":3,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/3\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":3,\"media_id\":3,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]}]},{\"id\":4,\"name\":\"Edgardo Torp\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"documents\":[{\"id\":4,\"user_id\":4,\"name\":\"maiores.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":4,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/4\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":4,\"media_id\":4,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]}]},{\"id\":5,\"name\":\"Miss Nikita Lueilwitz\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"documents\":[{\"id\":5,\"user_id\":5,\"name\":\"voluptatem.pdf\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"attachments\":[{\"id\":5,\"disk\":\"public\",\"directory\":\"media\\\/documents\\\/5\",\"filename\":\"sample\",\"extension\":\"pdf\",\"mime_type\":\"application\\\/pdf\",\"aggregate_type\":\"pdf\",\"size\":3028,\"variant_name\":null,\"original_media_id\":null,\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\",\"version\":1,\"pivot\":{\"mediable_id\":5,\"media_id\":5,\"mediable_type\":\"App\\\\Domain\\\\Documents\\\\Models\\\\Document\",\"tag\":\"attachments\",\"order\":1}}]}]}],\"pagination\":{\"count\":5,\"total\":5,\"perPage\":5,\"currentPage\":1,\"totalPages\":1,\"links\":{}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Fetch a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "User ID."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":{\"id\":1,\"name\":\"Hattie Bartell V\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:20:35.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Juan\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":{\"name\":\"Juan\",\"updated_at\":\"2022-10-30T13:22:18.000000Z\",\"created_at\":\"2022-10-30T13:22:18.000000Z\",\"id\":7}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "1",
+                                    "description": "User ID."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Juan\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":200,\"success\":true,\"data\":{\"id\":1,\"name\":\"Juan\",\"created_at\":\"2022-10-30T13:20:35.000000Z\",\"updated_at\":\"2022-10-30T13:22:19.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "1",
+                                    "description": "User ID."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 204,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
