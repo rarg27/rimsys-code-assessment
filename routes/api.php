@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\API\Documents\Controllers\DocumentAttachmentController;
 use App\Http\API\Documents\Controllers\DocumentController;
 use App\Http\API\Users\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,18 @@ Route::prefix('documents')->group(function () {
     Route::put('/{document}', [DocumentController::class, 'update']);
 
     Route::delete('/{document}', [DocumentController::class, 'delete']);
+
+    Route::prefix('/{document}/attachments')->group(function () {
+
+        Route::get('/', [DocumentAttachmentController::class, 'all']);
+
+        Route::post('/', [DocumentAttachmentController::class, 'store']);
+
+        Route::put('/{id}', [DocumentAttachmentController::class, 'update']);
+
+        Route::delete('/{id}', [DocumentAttachmentController::class, 'delete']);
+
+    });
 
 });
 

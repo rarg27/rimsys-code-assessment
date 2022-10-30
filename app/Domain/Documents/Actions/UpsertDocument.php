@@ -5,11 +5,17 @@ namespace App\Domain\Documents\Actions;
 use App\Domain\Documents\Models\Document;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
-use Plank\Mediable\Facades\MediaUploader;
 use Symfony\Component\HttpFoundation\File\File;
 
 class UpsertDocument
 {
+    public UpsertDocumentAttachment $upsertDocumentAttachment;
+
+    public function __construct(UpsertDocumentAttachment $upsertDocumentAttachment)
+    {
+        $this->upsertDocumentAttachment = $upsertDocumentAttachment;
+    }
+
     public function do(array $data, ?Document $document = null)
     {
         $rules = [
@@ -28,13 +34,8 @@ class UpsertDocument
         }
         $document->fill($data)->save();
 
-        if ($file = Arr::get($data, 'file')) {
-            $attachment = MediaUploader::fromSource($file)
-                ->toDirectory("media/documents/$document->id")
-                ->onDuplicateIncrement()
-                ->upload();
-
-            $document->attachMedia($attachment, 'attachments');
+        if (Arr::get($data, 'file')) {
+            $this->upsertDocumentAttachment->do($data, $document);
         }
 
         return $document;
